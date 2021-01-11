@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{label}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <app-new-leave-request-form *ngIf="label=='Leave Request'" [options]="options" [modal]="modal"></app-new-leave-request-form>
+        <app-new-leave-type-form *ngIf="label =='Leave Type'" [options]="options" [modal]="modal"></app-new-leave-type-form>
+        <app-new-role-form *ngIf="label=='Role'" [options]="options" [modal]="modal"></app-new-role-form>
+        <app-new-group-form *ngIf="label =='Group'" [options]="options" [modal]="modal"></app-new-group-form>
+        <app-new-user-form *ngIf="label =='User'" [options]="options" [modal]="modal"></app-new-user-form>
+    </div>
+</ng-template>
+<a id="info" class="btn btn-outline-primary" (click)="open(content)"><i  class="fas fa-info"></i></a>

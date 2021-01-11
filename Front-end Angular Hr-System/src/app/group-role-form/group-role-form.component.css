@@ -1,0 +1,14 @@
+#backBtn {
+    margin-top: 1em;
+    margin-left: 0.3em;
+}
+
+.btnRow {
+    margin-top: 2em;
+    margin-right: 0.4em;
+}
+
+.errorStyle {
+    font-size: 10pt;
+    font-style: italic;
+}

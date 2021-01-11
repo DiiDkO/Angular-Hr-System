@@ -1,0 +1,15 @@
+#submitBtn {
+    position: absolute;
+    margin-top: 2%;
+    right: 2%;
+}
+
+#backBtn {
+    margin-top: 1%;
+    margin-left: 0.3%;
+}
+
+.errorStyle {
+    font-size: 10pt;
+    font-style: italic;
+}

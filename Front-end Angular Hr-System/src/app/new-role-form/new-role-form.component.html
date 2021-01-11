@@ -1,0 +1,43 @@
+<div *ngIf="currentUser && isAdmin">
+    <div>
+        <button id="backBtn" class="btn btn-primary" *ngIf="!options" routerLink="/roleList">Back</button>
+    </div>
+    <div>
+        <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="errorMsg" class="col-md-10 mx-auto alert alert-danger">
+                <span>{{errorMsg}}</span>
+            </div>
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="name">Role:</label>
+                                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter Role" maxlength="50" minlength="2" required>
+                                <span *ngIf="roleForm.get('name').invalid && (roleForm.get('name').dirty || roleForm.get('name').touched)">
+                                    <span class="help-block text-danger errorStyle" *ngIf="roleForm.get('name').errors.required">Role must not be empty!</span>
+                                <span class="help-block text-danger errorStyle" *ngIf="roleForm.get('name').errors.maxlength">Role cannot not more than 50 characters!</span>
+                                </span>
+                                <span class="help-block text-danger errorStyle" *ngIf="isRoleValid == false">Role must be between 2 and 50 characters and can contain uppercase and lowercase letters and special characters : "_" , "-"!</span>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="!options">
+                            <div class="col-sm-12">
+                                <button id="submitBtn" class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="options">
+                            <div class="col-sm-3">
+                                <button id="updateBtn" class="btn btn-primary" type="button" (click)="updateRole()">Update</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button id="deleteBtn" class="btn btn-danger" type="button" (click)="deleteRole()">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

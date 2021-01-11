@@ -1,0 +1,45 @@
+<div *ngIf="currentUser && isAdmin">
+    <div>
+        <button id="backBtn" class="btn btn-primary" routerLink="/groupList" *ngIf="!options">Back</button>
+    </div>
+    <div>
+        <form [formGroup]="groupMemberForm">
+            <div *ngIf="errorMsg" class="col-md-10 mx-auto alert alert-danger">
+                <span>{{errorMsg}}</span>
+            </div>
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="group">Group:</label>
+                                <select class="form-control" id="group" formControlName="group" (change)="loadGroupMembers($event)">
+                                <option  *ngFor="let group of groupsList" [ngValue]="group">{{group.name}}</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="groupMember">Group Member:</label>
+                                <select class="form-control" id="groupMember" formControlName="groupMember">
+                            <option  *ngFor="let groupMember of groupMembersList" [ngValue]="groupMember">{{groupMember.firstName}} {{groupMember.lastName}}</option>
+                          </select>
+                            </div>
+                        </div>
+                        <div class="row btnRow justify-content-end">
+                            <div>
+                                <button id="addBtn" class="btn btn-primary" *ngIf="action == 'add'" type="button" (click)="addMember()">Save</button>
+                            </div>
+                            <div>
+                                <button id="deleteBtn" class="btn btn-danger" type="button" *ngIf="action == 'delete'" (click)="deleteMember()">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

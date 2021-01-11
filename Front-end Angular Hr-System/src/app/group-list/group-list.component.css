@@ -1,0 +1,21 @@
+table tr th {
+    background: #007bff;
+    color: white;
+    text-align: left;
+    vertical-align: center;
+}
+
+.justify-content-end {
+    margin-top: 1.2em;
+}
+
+.btn {
+    margin-right: 1.25em;
+}
+
+.panel-header {
+    font-size: 25pt;
+    text-align: center;
+    margin-top: 3em;
+    margin-bottom: 1.25em;
+}

@@ -1,0 +1,23 @@
+form {
+    margin-top: 5%;
+}
+
+#submitBtn {
+    position: absolute;
+    margin-top: 2%;
+    right: 2%;
+}
+
+#backBtn {
+    margin-top: 1%;
+    margin-left: 0.3%;
+}
+
+#updateBtn {
+    margin-right: 1em;
+}
+
+.errorStyle {
+    font-size: 10pt;
+    font-style: italic;
+}

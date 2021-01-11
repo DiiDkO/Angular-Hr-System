@@ -1,0 +1,44 @@
+<div *ngIf="currentUser">
+    <div>
+        <button class=" btn btn-primary" routerLink="/createNewLeaveRequest">New Leave Request</button>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h2 class="panel-header">Leave Requests List</h2>
+        </div>
+        <div class="panel-body">
+            <table id="userTable" class="table table-bordered  table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Leave Type</th>
+                        <th scope="col">Requested Days</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Requestor</th>
+                        <th scope="col">Approver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let leaveReq of leaveRequestList">
+                        <td data-label="Start Date" *ngIf="leaveReq.startDate">
+                            <app-modal-basic [options]="leaveReq" [label]="label"></app-modal-basic> {{leaveReq.startDate}}</td>
+                        <td data-label="Start Date" *ngIf="!leaveReq.startDate"></td>
+                        <td data-label="End Date" *ngIf="leaveReq.endDate">{{leaveReq.endDate}}</td>
+                        <td data-label="End Date" *ngIf="!leaveReq.endDate"></td>
+                        <td data-label="Leave Type" *ngIf="leaveReq.leaveType">{{leaveReq.leaveType.name}}</td>
+                        <td data-label="Leave Type" *ngIf="!leaveReq.leaveType"></td>
+                        <td data-label="Requested Days" *ngIf="leaveReq.requestedDays">{{leaveReq.requestedDays}}</td>
+                        <td data-label="Requested Days" *ngIf="!leaveReq.requestedDays"></td>
+                        <td data-label="Status" *ngIf="leaveReq.status">{{leaveReq.status}}</td>
+                        <td data-label="Status" *ngIf="!leaveReq.status"></td>
+                        <td data-laberl="Requestor" *ngIf="leaveReq.requestor">{{leaveReq.requestor.firstName}} {{leaveReq.requestor.lastName}}</td>
+                        <td data-laberl="Requestor" *ngIf="!leaveReq.requestor"></td>
+                        <td data-laberl="Approver" *ngIf="leaveReq.approver">{{leaveReq.approver.firstName}} {{leaveReq.approver.lastName}}</td>
+                        <td data-laberl="Approver" *ngIf="!leaveReq.approver"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

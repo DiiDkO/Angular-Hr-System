@@ -1,0 +1,13 @@
+.home-heading {
+    color: #007bff;
+    text-align: center;
+    font-size: 5em;
+}
+
+.home-heading-container {
+    position: absolute;
+    float: left;
+    text-align: center;
+    margin-left: 12%;
+    margin-top: 5%;
+}

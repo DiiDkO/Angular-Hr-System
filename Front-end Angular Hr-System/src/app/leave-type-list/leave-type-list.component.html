@@ -1,0 +1,26 @@
+<div *ngIf="currentUser && (isAdmin)">
+    <div class="d-flex justify-content-end">
+        <button class=" btn btn-primary" routerLink="/createNewLeaveType">New Leave Type</button>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h2 class="panel-header">Leave Types List</h2>
+        </div>
+        <div class="panel-body">
+            <table id="groupTable" class="table table-bordered  table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Leave Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let leaveType of leaveTypeList">
+                        <td data-label="Leave Type" *ngIf="leaveType.name">
+                            <app-modal-basic [options]="leaveType" [label]="label"></app-modal-basic> {{leaveType.name}}</td>
+                        <td data-label="Leave Type" *ngIf="!leaveType.name"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<div *ngIf="currentUser && isAdmin">
+    <div class="row d-flex justify-content-end">
+        <div>
+            <button class=" btn btn-primary " routerLink="/createNewGroup">New Group</button>
+        </div>
+        <div>
+            <button id="addGrMemberBtn" class=" btn btn-primary " (click)="openNewGrMemberForm($event)">New Group Member</button>
+        </div>
+        <div>
+            <button id="addGrRoleBtn" class=" btn btn-primary " (click)="openNewGrRoleForm($event)">New Group Role</button>
+        </div>
+        <div>
+            <button id="deleteGrMemberBtn" class=" btn btn-danger " (click)="openNewGrMemberForm($event)">Remove Group Member</button>
+        </div>
+        <div>
+            <button id="deleteGrRoleBtn" class=" btn btn-danger " (click)="openNewGrRoleForm($event)">Remove Group Role</button>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-heading">
+            <h2 class="panel-header">Groups List</h2>
+        </div>
+        <div class="panel-body">
+            <table id="groupTable" class="table table-bordered  table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Manager</th>
+                        <th scope="col">Members</th>
+                        <th scope="col">Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let group of groupList">
+                        <td data-label="Group" *ngIf="group.name">
+                            <app-modal-basic [options]="group" [label]="label"></app-modal-basic> {{group.name}}</td>
+                        <td data-label="Group" *ngIf="!group.name"></td>
+                        <td data-label="Email" *ngIf="group.email">{{group.email}}</td>
+                        <td data-label="Email" *ngIf="!group.email"></td>
+                        <td data-label="Manager" *ngIf="group.manager && group.manager.firstName && group.manager.lastName">{{group.manager.firstName}} {{group.manager.lastName}}</td>
+                        <td data-label="Manager" *ngIf="!group.manager"></td>
+                        <td data-label="Members" *ngIf="group.users && group.users.length > 0">
+                            <ul>
+                                <li *ngFor="let member of group.users">{{member.firstName}} {{member.lastName}}</li>
+                            </ul>
+                        </td>
+                        <td data-label="Members" *ngIf="!group.users || group.users.length == 0"></td>
+                        <td data-label="Roles" *ngIf="group.roles && group.roles.length > 0">
+                            <ul>
+                                <li *ngFor="let role of group.roles">{{role.name}}</li>
+                            </ul>
+                        </td>
+                        <td data-label="Roles" *ngIf="!group.roles || group.roles.length == 0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

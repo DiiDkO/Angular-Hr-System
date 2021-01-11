@@ -1,0 +1,117 @@
+<div *ngIf="currentUser && isAdmin">
+    <div>
+        <button id="backBtn" class="btn btn-primary" routerLink="/userList" *ngIf="!options">Back</button>
+    </div>
+
+    <div>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="errorMsg" class="col-md-10 mx-auto alert alert-danger">
+                <span>{{errorMsg}}</span>
+            </div>
+            <div class="container ">
+                <div class="panel">
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="username">Username:</label>
+                                        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter Username" maxlength="30" minlength="6" required>
+                                        <span *ngIf="userForm.get('username').invalid && (userForm.get('username').dirty || userForm.get('username').touched)">
+                                            <span class="help-block text-danger errorStyle" *ngIf="userForm.get('username').errors.pattern">Username must at least 6 characters - can be used only upper, lower Case letters and digits!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('username').errors.required">First Name must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('username').errors.maxlength">Max characters of the username cannot be more than 30!</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="firstName">First Name:</label>
+                                        <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter First Name" maxlength="30" minlength="2" required>
+                                        <span *ngIf="userForm.get('firstName').invalid && (userForm.get('firstName').dirty || userForm.get('firstName').touched)">
+                                            <span class="help-block text-danger errorStyle" *ngIf="userForm.get('firstName').errors.required">First Name must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('firstName').errors.maxlength">First Name cannot be more than 30 characters!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('firstName').errors.minlength">First Name cannot be less than 2 characters!</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email">
+                                        <span *ngIf="userForm.get('email').invalid && (userForm.get('email').dirty || userForm.get('email').touched)">
+                                            <span class="help-block text-danger errorStyle" *ngIf="userForm.get('email').errors.required">Email must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('email').errors.email">Email is invalid!</span>
+                                        </span>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="middleName">Middle Name:</label>
+                                        <input type="text" class="form-control" id="middleName" formControlName="middleName" placeholder="Enter Middle Name" maxlength="30" minlength="2" required>
+                                        <span *ngIf="userForm.get('middleName').invalid && (userForm.get('middleName').dirty || userForm.get('middleName').touched)">
+                                            <span class="help-block text-danger errorStyle" *ngIf="userForm.get('middleName').errors.required">Middle Name must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('middleName').errors.maxlength">Middle Name cannot be more than 30 characters!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('middleName').errors.minlength">Middle Name cannot be less than 2 characters!</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="manager">Manager:</label>
+                                        <select class="form-control" id="manager" formControlName="manager">
+                            <option  *ngFor="let manager of managerList" [ngValue]="manager" [selected]="manager!=null && options !=null && options.manager !=null && manager.id == options.manager.id">{{manager.firstName}} {{manager.lastName}}</option>
+                          </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="lastName">Last Name:</label>
+                                        <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter Last Name" minlength="2" maxlength="30" required>
+                                        <span *ngIf="userForm.get('lastName').invalid && (userForm.get('lastName').dirty || userForm.get('lastName').touched)">
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('lastName').errors.required">Last Name must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('lastName').errors.maxlength">Last Name cannot be more than 30 characters!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('lastName').errors.minlength">Last Name cannot be less than 2 characters!</span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group row" *ngIf="!options">
+                                    <div class="col-sm-6">
+                                        <label for="password">Password:</label>
+                                        <input type="password" class="form-control" id="passoword" formControlName="password" placeholder="Enter passowrd" maxlength="50" minlength="8" required>
+                                        <span *ngIf="userForm.get('password').invalid && (userForm.get('password').dirty || userForm.get('password').touched)">
+                                            <span class="help-block text-danger errorStyle" *ngIf="userForm.get('password').errors.required">Password must not be empty!</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('password').errors.pattern">Password must be at least 8 characters, at least one digit,one letter and one special characters.</span>
+                                        <span class="help-block text-danger errorStyle" *ngIf="userForm.get('password').errors.maxlength">Max lenght of the password cannot be more than 50 characters</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group row" *ngIf="!options">
+                                    <div class="col-sm-6">
+                                        <label for="confirmPassword">Confirm Password:</label>
+                                        <input type="password" class="form-control" id="confirmPassoword" formControlName="confirmPassword" placeholder="Confirm password" maxlength="50" minlength="8" required>
+                                        <span class="help-block text-danger errorStyle" *ngIf="isPasswordMatched == false">Passwords must match!</span>
+                                        <span class="help-block text-success errorStyle" *ngIf="isPasswordMatched == true">Passwords matched!</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" *ngIf="!options">
+                                    <div class="col-sm-12">
+                                        <button id="submitBtn" class="btn btn-primary" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                                <div class="form-group d-flex justify-content-end " *ngIf="options">
+                                    <div class="col-sm-3">
+                                        <button id="updateBtn" class="btn btn-primary" type="button" (click)="updateUser()">Update</button>
+                                        <button id="deleteBtn" class="btn btn-danger" type="button" (click)="deleteUser()">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
